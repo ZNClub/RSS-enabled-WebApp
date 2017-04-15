@@ -13,7 +13,7 @@ function loadDoc() {
 		//$( ".result" ).html( data );
 		//alert( "Load was performed." );
 		console.log("ajax success");
-		myFunction(data);	
+		myFunction(data);
 		setTimeout(loadDoc,10000);
 	});
 }
@@ -34,11 +34,36 @@ function myFunction(data) {
   }
   document.getElementById("demo").innerHTML = table;
   */
+  /*
   xmlDoc = $.parseXML(data);
   //console.log(xmlDoc);
   $xml=$(xmlDoc);
   //console.log($xml);
   $channel=$xml.find("rss").find("channel");
   console.log($channel.find("title").text());
-  
+  */
+	
+	
+	// test 
+	var content = document.evaluate( '//rss', data, null, XPathResult.ANY_TYPE, null );
+	console.log(content);
+	//var paragraphCount = document.evaluate( 'count(//p)', document, null, XPathResult.ANY_TYPE, null );
+	
+	// iteration
+	/*
+	var iterator = document.evaluate('//channel', documentNode, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null );
+
+	try {
+	  var thisNode = iterator.iterateNext();
+	  
+	  while (thisNode) {
+		alert( thisNode.textContent );
+		thisNode = iterator.iterateNext();
+	  }	
+	}
+	catch (e) {
+	  dump( 'Error: Document tree modified during iteration ' + e );
+	}
+	*/
+	  
 }
