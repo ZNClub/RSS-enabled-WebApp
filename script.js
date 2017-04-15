@@ -9,8 +9,8 @@ function loadDoc() {
 		myFunction(data);		
 	});
 }
-function myFunction(xml) {
-  var i;
+function myFunction(data) {
+  /*var i;
   var xmlDoc = xml.responseXML;
   console.log("data log:");
   console.log(xml);
@@ -24,4 +24,10 @@ function myFunction(xml) {
     "</td></tr>";
   }
   document.getElementById("demo").innerHTML = table;
+  */
+  xmlDoc = $.parseXML(data);
+  console.log(xmlDoc);
+  $xml=$(xmlDoc);
+  console.log($xml);
+  
 }
