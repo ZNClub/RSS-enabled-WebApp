@@ -6,7 +6,7 @@ function loadDoc() {
       myFunction(this);
     }
   };
-  xhttp.open("GET", "rss.xml", true);
+  xhttp.open("GET", "https://raw.githubusercontent.com/ZNClub/RSS-enabled-WebApp/master/rss.xml", true);
   xhttp.send();
 }
 function myFunction(xml) {
