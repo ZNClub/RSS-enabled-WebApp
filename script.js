@@ -96,51 +96,41 @@ function myFunction(data) {
   
 	console.log(parse(data));
 	
-	// test 
-	var data = new DOMParser().parseFromString(data, "text/xml");
-	var item = document.evaluate( '//rss//channel//item', data, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
 	
+	var data = new DOMParser().parseFromString(data, "text/xml");
+	var item = document.evaluate( '//rss//channel//item', data, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );	
 	var it=item.iterateNext();
+	count = 0;
 	while(it){
-		
+		count+=1;
 		var start='<?xml version="1.0" encoding="UTF-8"?><item>';
 		var end='</item>';
 		var data = new DOMParser().parseFromString(start+it.innerHTML+end, "text/xml");
 	
-		var title=document.evaluate('item//link',data,null,XPathResult.STRING_TYPE,null);
-	//var title = data.getElementsByTagName("title");
-
-	//xmlDoc =$.parseXML(data);
-
-	//$item = $(xmlDoc);
-	//var title=$item.find("title");
-	
-	
+		var ititle=document.evaluate('item//title',data,null,XPathResult.STRING_TYPE,null);
+		var ilink=document.evaluate('item//link',data,null,XPathResult.STRING_TYPE,null);
+		var ipub=document.evaluate('item//pubDate',data,null,XPathResult.STRING_TYPE,null);
+		console.log(ititle.stringValue);
+		console.log(ilink.stringValue);
+		console.log(ipub.stringValue);
 		
+			// check no of elements in timeline $('.result')
 		
-		
-		console.log(title);
+		var begin='<div class="line text-muted"></div>';
+		var date='<div class="separator text-muted"><time>'+ipub.stringValue+'</time></div>';
+		var start='<article class="panel panel-primary">';
+		var icon='<div class="panel-heading icon"><i class="glyphicon glyphicon-plus"></i></div>';
+		var head='<div class="panel-heading"><h2 class="panel-title">'+ititle.stringValue+'</h2></div>';
+		var body='<div class="panel-body"><a href="'+ilink.stringValue+'" target="_blank">Read Now</a></div>';
+		var end='</article>';
+		var html=begin+date+start+icon+head+body+end;
+		$('.timeline').append(html);
 		
 		it=item.iterateNext();
 	}
 	
-	//var paragraphCount = document.evaluate( 'count(//p)', document, null, XPathResult.ANY_TYPE, null );
-	
-	// iteration
-	/*
-	var iterator = document.evaluate('//channel', documentNode, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null );
 
-	try {
-	  var thisNode = iterator.iterateNext();
-	  
-	  while (thisNode) {
-		alert( thisNode.textContent );
-		thisNode = iterator.iterateNext();
-	  }	
-	}
-	catch (e) {
-	  dump( 'Error: Document tree modified during iteration ' + e );
-	}
-	*/
+
+
 	  
 }
