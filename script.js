@@ -8,13 +8,13 @@ $(document).ready(function() {
 
 function loadDoc() {
 	console.log("onclick");
-  
-	$.get( "https://raw.githubusercontent.com/ZNClub/RSS-enabled-WebApp/master/rss.xml", function( data ) {
+	//https://raw.githubusercontent.com/ZNClub/RSS-enabled-WebApp/master/rss.xml
+	$.get( "https://nevildsouza.wordpress.com/feed/", function( data ) {
 		//$( ".result" ).html( data );
 		//alert( "Load was performed." );
 		console.log("ajax success");
 		myFunction(data);
-		setTimeout(loadDoc,10000);
+		setTimeout(loadDoc,120000);
 	});
 }
 
