@@ -48,8 +48,15 @@ function myFunction(data) {
 	
 	// test 
 	var data = new DOMParser().parseFromString(data, "text/xml");
-	var content = document.evaluate( '//rss', data, null, XPathResult.ANY_TYPE, null );
-	console.log(content);
+	var item = document.evaluate( '//rss//channel//item', data, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
+	
+	var it=item.iterateNext();
+	while(it){
+		
+		console.log(it.innerHTML);
+		it=item.iterateNext();
+	}
+	
 	//var paragraphCount = document.evaluate( 'count(//p)', document, null, XPathResult.ANY_TYPE, null );
 	
 	// iteration
