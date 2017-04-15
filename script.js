@@ -26,8 +26,10 @@ function myFunction(data) {
   document.getElementById("demo").innerHTML = table;
   */
   xmlDoc = $.parseXML(data);
-  console.log(xmlDoc);
+  //console.log(xmlDoc);
   $xml=$(xmlDoc);
-  console.log($xml);
+  //console.log($xml);
+  $channel=$xml.find("rss").find("channel");
+  console.log($channel.find("title").text());
   
 }
