@@ -9,7 +9,9 @@ $(document).ready(function() {
 function loadDoc() {
 	console.log("onclick");
 	//https://raw.githubusercontent.com/ZNClub/RSS-enabled-WebApp/master/rss.xml
-	$.get( "https://nevildsouza.wordpress.com/feed/", function( data ) {
+	//https://nevildsouza.wordpress.com/feed/
+	// rss.xml fails
+	$.get( "https://raw.githubusercontent.com/ZNClub/RSS-enabled-WebApp/master/rss.xml", function( data ) {
 		//$( ".result" ).html( data );
 		//alert( "Load was performed." );
 		console.log("ajax success");
@@ -45,6 +47,7 @@ function myFunction(data) {
 	
 	
 	// test 
+	var data = new DOMParser().parseFromString(data, "text/xml");
 	var content = document.evaluate( '//rss', data, null, XPathResult.ANY_TYPE, null );
 	console.log(content);
 	//var paragraphCount = document.evaluate( 'count(//p)', document, null, XPathResult.ANY_TYPE, null );
