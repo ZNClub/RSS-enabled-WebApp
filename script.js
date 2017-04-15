@@ -1,13 +1,21 @@
 
 function loadDoc() {
-  var xhttp = new XMLHttpRequest();
+	console.log("onclick");
+  /*  var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       myFunction(this);
     }
   };
   xhttp.open("GET", "https://raw.githubusercontent.com/ZNClub/RSS-enabled-WebApp/master/rss.xml", true);
-  xhttp.send();
+  xhttp.send(); 
+   */
+  $.get( "https://raw.githubusercontent.com/ZNClub/RSS-enabled-WebApp/master/rss.xml", function( data ) {
+  $( ".result" ).html( data );
+  alert( "Load was performed." );
+  myFunction(data);
+});
+  
 }
 function myFunction(xml) {
   var i;
