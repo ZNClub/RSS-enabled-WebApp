@@ -17,6 +17,6 @@ with open("rss_update.xml","wb") as rss:
 from urllib.request import urlopen
 
 file = urlopen('https://nevildsouza.wordpress.com/feed')
-with open("rss_update.xml","wb") as rss:
+with open("rss.xml","wb") as rss:
     rss.write(file.read())
 
