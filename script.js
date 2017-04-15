@@ -76,12 +76,16 @@ function parse(xml) {
 
 function loadDoc() {
 	console.log("onclick");
+	
 	//https://raw.githubusercontent.com/ZNClub/RSS-enabled-WebApp/master/rss.xml
 	//https://nevildsouza.wordpress.com/feed/
 	// rss.xml fails
+	
+	
+	
 	$.get( "https://raw.githubusercontent.com/ZNClub/RSS-enabled-WebApp/master/rss.xml", function( data ) {
-		//$( ".result" ).html( data );
-		//alert( "Load was performed." );
+		
+		
 		console.log("ajax success");
 		myFunction(data);
 		setTimeout(loadDoc,120000);
@@ -89,49 +93,33 @@ function loadDoc() {
 }
 
 function myFunction(data) {
-  /*var i;
-  var xmlDoc = xml.responseXML;
-  console.log("data log:");
-  console.log(xml);
-  var table="<tr><th>Artist</th><th>Title</th></tr>";
-  var x = xmlDoc.getElementsByTagName("CD");
-  for (i = 0; i <x.length; i++) { 
-    table += "<tr><td>" +
-    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
-    "</td><td>" +
-    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
-    "</td></tr>";
-  }
-  document.getElementById("demo").innerHTML = table;
-  */
-  /*
-  xmlDoc = $.parseXML(data);
-  //console.log(xmlDoc);
-  $xml=$(xmlDoc);
-  //console.log($xml);
-  $channel=$xml.find("rss").find("channel");
-  console.log($channel.find("title").text());
-  */
-	
+  
+	console.log(parse(data));
 	
 	// test 
 	var data = new DOMParser().parseFromString(data, "text/xml");
-	var item = document.evaluate( '//rss//channel', data, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
+	var item = document.evaluate( '//rss//channel//item', data, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
 	
 	var it=item.iterateNext();
 	while(it){
 		
+		var start='<?xml version="1.0" encoding="UTF-8"?><item>';
+		var end='</item>';
+		var data = new DOMParser().parseFromString(start+it.innerHTML+end, "text/xml");
+	
+		var title=document.evaluate('item//link',data,null,XPathResult.STRING_TYPE,null);
+	//var title = data.getElementsByTagName("title");
+
+	//xmlDoc =$.parseXML(data);
+
+	//$item = $(xmlDoc);
+	//var title=$item.find("title");
+	
+	
 		
-		var data = new DOMParser().parseFromString(it.innerHTML, "text/xml");
-		//var title=document.evaluate('link',data,null,XPathResult.ANY_TYPE,null);
-		//xmlDoc =$.parseXML(data);
-		//$item = $(xmlDoc);
-		//var title=$item.find("title");
-		//var title = data.getElementsByTagName("title");
 		
 		
-		
-		//console.log(data);
+		console.log(title);
 		
 		it=item.iterateNext();
 	}
