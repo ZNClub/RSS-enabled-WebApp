@@ -1,4 +1,11 @@
 
+// main onload
+$(document).ready(function() {
+	loadDoc();
+
+});
+
+
 function loadDoc() {
 	console.log("onclick");
   
@@ -6,9 +13,11 @@ function loadDoc() {
 		//$( ".result" ).html( data );
 		//alert( "Load was performed." );
 		console.log("ajax success");
-		myFunction(data);		
+		myFunction(data);	
+		setTimeout(loadDoc,10000);
 	});
 }
+
 function myFunction(data) {
   /*var i;
   var xmlDoc = xml.responseXML;
