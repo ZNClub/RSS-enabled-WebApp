@@ -88,7 +88,7 @@ function loadDoc() {
 		
 		console.log("ajax success");
 		myFunction(data);
-		setTimeout(loadDoc,120000);
+		setTimeout(loadDoc,5000);
 	});
 }
 
@@ -101,6 +101,7 @@ function myFunction(data) {
 	var item = document.evaluate( '//rss//channel//item', data, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );	
 	var it=item.iterateNext();
 	count = 0;
+	var child=[];
 	while(it){
 		count+=1;
 		var start='<?xml version="1.0" encoding="UTF-8"?><item>';
@@ -124,10 +125,17 @@ function myFunction(data) {
 		var body='<div class="panel-body"><a href="'+ilink.stringValue+'" target="_blank">Read Now</a></div>';
 		var end='</article>';
 		var html=begin+date+start+icon+head+body+end;
-		$('.timeline').append(html);
 		
+		//$('.timeline').append(html);
+		child.push(html);
 		it=item.iterateNext();
+		
 	}
+	$('.timeline').empty();
+	for(var i=0;i<child.length;i++){
+		$('.timeline').append(child[i]);
+	}
+	
 	
 
 
